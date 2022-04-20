@@ -10,10 +10,7 @@ export default function Title(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    color: 'red',
-    fontSize: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
+    padding: 4,
+    top: 10,
   },
 });
