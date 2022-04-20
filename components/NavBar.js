@@ -11,6 +11,7 @@ export default function NavBar() {
 const StyledNav = StyleSheet.create ({
     bar: {
     width: "100%",
+    marginTop: 20,
     paddingVertical: 8,
     borderWidth: 2,
     borderColor: "#20232a",
