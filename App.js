@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, FlatList, View, Text } from 'react-native';
+import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 import NavBar from './components/NavBar';
 import React from 'react';
 import api from './services/api'
+import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 export default function App() {
   const [courses,setCourses] = React.useState([])
@@ -14,11 +15,18 @@ export default function App() {
   }, []);
 
   const renderItem = ({item}) => (
-    <View style={styles.item}>
-      <Text>
-      {item.Title}
-      </Text>
-    </View>
+    <Collapse>
+      <CollapseHeader>
+        <View style={styles.item}>
+          <Text style={styles.itemTitle}>
+          {item.Title}
+          </Text>
+        </View>
+      </CollapseHeader>
+      <CollapseBody style={styles.itemBody} numberOfLines={2} ellipsizeMode='tail'>
+            <Text>{item.Course_Resume}</Text>
+          </CollapseBody>
+    </Collapse>
   );
   
   return (
@@ -29,6 +37,13 @@ export default function App() {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       />
+      <View style={styles.Button}>
+        <Button 
+        title={"Login"}
+        style={styles.Button}
+        color={"#293351"}
+        />
+      </View>
     </View>
     
   );
@@ -42,6 +57,9 @@ const styles = StyleSheet.create({
     top: 0,
     backgroundColor: "whitesmoke"
   },
+  itemTitle: {
+    color: "yellow",
+  },
   item: {
     top: 20,
     width: 300,
@@ -49,5 +67,18 @@ const styles = StyleSheet.create({
     margin: 4,
     padding: 10,
     backgroundColor: "#293351",
-    }
+    },
+  itemBody: {
+    top: 13,
+    width: 300,
+    borderRadius: 3,
+    margin: 4,
+    padding: 10,
+    backgroundColor: "#ffff3f",
+  },
+  Button: {
+    top: -160,
+    backgroundColor: "#ffff3f",
+    borderRadius: 3,
+  }
 });
