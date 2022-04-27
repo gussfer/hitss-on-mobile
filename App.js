@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, FlatList, View, Text, Button } from 'react-native';
 import NavBar from './components/NavBar';
 import React from 'react';
@@ -14,21 +13,31 @@ export default function App() {
     })
   }, []);
 
+  
+
   const renderItem = ({item}) => (
     <Collapse>
       <CollapseHeader>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>
-          {item.Title}
+            {item.Title}
           </Text>
         </View>
       </CollapseHeader>
-      <CollapseBody style={styles.itemBody} numberOfLines={2} ellipsizeMode='tail'>
-            <Text>{item.Course_Resume}</Text>
-          </CollapseBody>
+      <CollapseBody style={styles.itemBody}>
+        <Text numberOfLines={NUM_OF_LINES} onTextLayout={onTextLayout}>
+          {item.Course_Resume}
+        </Text>
+      </CollapseBody>
     </Collapse>
   );
   
+  const NUM_OF_LINES = 2;
+  const [ showMore, setShowMore ] = React.useState(false);
+  const onTextLayout = React.useCallback(e => {
+    setShowMore(e.nativeEvent.lines.length > NUM_OF_LINES);
+  }, []);
+
   return (
     <View style={styles.container}>
       <NavBar/>
@@ -37,13 +46,6 @@ export default function App() {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       />
-      <View style={styles.Button}>
-        <Button 
-        title={"Login"}
-        style={styles.Button}
-        color={"#293351"}
-        />
-      </View>
     </View>
     
   );
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke"
   },
   itemTitle: {
-    color: "yellow",
+    color: "#ffff3f",
   },
   item: {
     top: 20,
@@ -76,9 +78,4 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#ffff3f",
   },
-  Button: {
-    top: -160,
-    backgroundColor: "#ffff3f",
-    borderRadius: 3,
-  }
 });
