@@ -5,17 +5,15 @@ export default function NavBar() {
     return (
         <View style={StyledNav.bar}>
             <Text style={StyledNav.logo}>Hitss On</Text>
-            <View style={StyledNav.Button}>
+            <View style={StyledNav.button}>
                 <Button
                     title={"Login"}
                     color={"#293351"}
                 />
             </View>
         </View>
-
-
-    );
-  }
+  );
+}
 
 const StyledNav = StyleSheet.create ({
     bar: {
@@ -35,8 +33,7 @@ const StyledNav = StyleSheet.create ({
     fontWeight: "bold",
     marginLeft: 15,
     },
-    Button: {
-        
+    button: {
         backgroundColor: "#ffff3f",
         borderRadius: 3,
         marginRight: 15,

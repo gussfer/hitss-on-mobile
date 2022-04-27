@@ -8,12 +8,9 @@ export default function App() {
   const [courses,setCourses] = React.useState([])
   React.useEffect(() => {
     api.get('/courses').then((response) => {
-      console.log(response.data)
       setCourses(response.data)
     })
   }, []);
-
-  
 
   const renderItem = ({item}) => (
     <Collapse>
@@ -24,30 +21,31 @@ export default function App() {
           </Text>
         </View>
       </CollapseHeader>
-      <CollapseBody style={styles.itemBody}>
-        <Text numberOfLines={NUM_OF_LINES} onTextLayout={onTextLayout}>
-          {item.Course_Resume}
-        </Text>
+          <CollapseBody style={styles.itemBody}>
+            <Text>
+              {showMore ? item.Course_Resume : `${item.Course_Resume.substring(0,55)}`}
+              <Text onPress={()=> setShowMore(!showMore)}>
+                {showMore ? <i><b> ...ver menos</b></i>:<i><b> ...ver mais</b></i>}
+              </Text>
+              
+            </Text>
+           
       </CollapseBody>
     </Collapse>
   );
   
-  const NUM_OF_LINES = 2;
   const [ showMore, setShowMore ] = React.useState(false);
-  const onTextLayout = React.useCallback(e => {
-    setShowMore(e.nativeEvent.lines.length > NUM_OF_LINES);
-  }, []);
+  
 
   return (
     <View style={styles.container}>
       <NavBar/>
       <FlatList
-      data={courses}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
+        data={courses}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
       />
     </View>
-    
   );
 }
 
