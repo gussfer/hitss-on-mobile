@@ -1,33 +1,30 @@
-import { StyleSheet, View, Text } from 'react-native';
-import NavBar from './components/NavBar';
-import React from 'react';
-import api from './services/api'
-import GenericList from './components/GenericList';
+import * as React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import TestScreen from "./screens/TestScreen"
+import Login from "./screens/Login"
 
-export default function App() {
-  //Requisição get
-  const [courses,setCourses] = React.useState([])
-  React.useEffect(() => {
-    api.get('/courses').then((response) => {
-      setCourses(response.data)
-    })
-  }, []);
- 
+const Stack = createNativeStackNavigator();
 
+const App = () => {
   return (
-    <View style={styles.container}>
-      <NavBar/>
-      <GenericList listItems={courses} field={"Title"}/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name="Home"
+          component={TestScreen}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
+
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    flex: 1,
-    top: 0,
-    backgroundColor: "whitesmoke"
-  },
-});
+export default App
+
