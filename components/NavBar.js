@@ -9,6 +9,7 @@ export default function NavBar() {
                 <Button
                     title={"Login"}
                     color={"#293351"}
+                    onPress={() => alert("Faça login para continuar!")}
                 />
             </View>
         </View>
@@ -17,7 +18,6 @@ export default function NavBar() {
 
 const StyledNav = StyleSheet.create ({
     bar: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: "100%",
