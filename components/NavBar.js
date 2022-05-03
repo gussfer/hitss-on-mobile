@@ -5,13 +5,15 @@ export default function NavBar({navigation}) {
     return (
         <View style={StyledNav.bar}>
             <Text style={StyledNav.logo} onPress={() => navigation.navigate('Home')}>Hitss On</Text>
-            <View style={StyledNav.button}>
+            <Text style={StyledNav.login} onPress={() => navigation.navigate('Login')}>Login</Text>
+
+            {/* <View style={StyledNav.button}>
                 <Button
                     title={"Login"}
-                    color={"#293351"}
+                    color={"#ffff3f"}
                     onPress={() => navigation.navigate('Login')}
                     />
-            </View>
+            </View> */}
         </View>
   );
 }
@@ -33,9 +35,13 @@ const StyledNav = StyleSheet.create ({
         fontWeight: "bold",
         marginLeft: 15,
     },
-    button: {
-        backgroundColor: "#ffff3f",
-        borderRadius: 3,
+    login: {
+        color: "#ffff3f",
+        
+        textAlign: "center",
+        fontSize: 30,
+        fontWeight: "bold",
         marginRight: 15,
+
       }
 })

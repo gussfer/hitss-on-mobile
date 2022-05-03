@@ -1,4 +1,4 @@
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import NavBar from './../components/NavBar';
 import React from 'react';
 import api from './../services/api'
@@ -16,7 +16,7 @@ export default function TestScreen({navigation}) {
   return (
     <View style={styles.container}>
       <NavBar navigation={navigation}/>
-      <GenericList listItems={courses} field={"Title"}/>
+      <GenericList listItems={courses} field={"Title"} navigation={navigation}/>
     </View>
   );
 }
