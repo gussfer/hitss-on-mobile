@@ -16,13 +16,17 @@ export default function GenericList({listItems, field, navigation}){
    
      <CollapseHeader>
           <View style={styles.item}>
-            <Text style={styles.itemTitle}onLongPress={() => navigation.navigate('Login')}>
-              {item[field]}
-            </Text>
+              <TouchableOpacity
+                  style={styles.itemTitle}
+                  onLongPress={() => navigation.navigate('Login')}
+              >
+                    <Text style={styles.itemTitle}>
+                      {item[field]}
+                    </Text>
+                </TouchableOpacity>
+                <Text style={styles.sideIcon}>|||</Text>
           </View>
-      
      </CollapseHeader>
-     
          <CollapseBody style={styles.itemBody}>
                   <Text>
                     {showMore ? item.Course_Resume : `${item.Course_Resume.substring(0,55)}`}
@@ -47,6 +51,11 @@ export default function GenericList({listItems, field, navigation}){
 const styles = StyleSheet.create({
     itemTitle: {
       color: "#ffff3f",
+      fontSize: 20,
+    },
+    sideIcon: {
+      color: "#ffff3f",
+      fontSize: 20,
     },
     item: {
       top: 20,
@@ -55,6 +64,9 @@ const styles = StyleSheet.create({
       margin: 4,
       padding: 20,
       backgroundColor: "#293351",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      
       },
     itemBody: {
       top: 13,

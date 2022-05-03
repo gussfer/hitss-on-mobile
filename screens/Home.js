@@ -1,10 +1,10 @@
 import { StyleSheet, View, Text } from 'react-native';
-import NavBar from './../components/NavBar';
+import NavBar from '../components/NavBar';
 import React from 'react';
-import api from './../services/api'
-import GenericList from './../components/GenericList';
+import api from '../services/api'
+import GenericList from '../components/GenericList';
 
-export default function TestScreen({navigation}) {
+export default function Home({navigation}) {
   //Requisição get
   const [courses,setCourses] = React.useState([])
   React.useEffect(() => {
