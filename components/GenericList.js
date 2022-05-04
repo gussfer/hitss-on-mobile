@@ -19,14 +19,10 @@ export default function GenericList({listItems, field, navigation}){
               <TouchableOpacity
                style={styles.itemTitle}
                onPress={() => navigation.navigate('Login')}>
-                 <View style={{
-    borderWidth: 2,
-    borderColor: "rgba(255, 255, 63, .2)",
-    borderRadius: 3,
-  }}>
-                  <Text style={styles.itemTitle}>
-                    {item[field]}
-                  </Text>
+                 <View style={styles.borderStyle}>
+                    <Text style={styles.itemTitle}>
+                      {item[field]}
+                    </Text>
                  </View>
               </TouchableOpacity>
                   <Icon name="menu" style={styles.sideIcon}/>
@@ -83,4 +79,9 @@ const styles = StyleSheet.create({
       padding: 10,
       backgroundColor: "#ffff3f",
     },
+    borderStyle: {
+      borderWidth: 2,
+      borderColor: "rgba(255, 255, 63, .2)",
+      borderRadius: 3,
+    }
   });
