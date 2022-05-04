@@ -1,6 +1,7 @@
 import { StyleSheet, FlatList, View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
+import Icon from "react-native-vector-icons/SimpleLineIcons"
 
 /*
  Ternário - condição ? express 1 : express 2 
@@ -13,28 +14,32 @@ export default function GenericList({listItems, field, navigation}){
 //Const associada a a FlatList
  const renderItem = ({item}) => (
    <Collapse>
-   
      <CollapseHeader>
           <View style={styles.item}>
               <TouchableOpacity
-                  style={styles.itemTitle}
-                  onLongPress={() => navigation.navigate('Login')}
-              >
-                    <Text style={styles.itemTitle}>
-                      {item[field]}
-                    </Text>
-                </TouchableOpacity>
-                <Text style={styles.sideIcon}>|||</Text>
+               style={styles.itemTitle}
+               onPress={() => navigation.navigate('Login')}>
+                 <View style={{
+    borderWidth: 2,
+    borderColor: "rgba(255, 255, 63, .2)",
+    borderRadius: 3,
+  }}>
+                  <Text style={styles.itemTitle}>
+                    {item[field]}
+                  </Text>
+                 </View>
+              </TouchableOpacity>
+                  <Icon name="menu" style={styles.sideIcon}/>
           </View>
      </CollapseHeader>
-         <CollapseBody style={styles.itemBody}>
-                  <Text>
-                    {showMore ? item.Course_Resume : `${item.Course_Resume.substring(0,55)}`}
-                        <Text onPress={()=> setShowMore(!showMore)}>
-                          {showMore ? " ...ver menos" : "...ver mais"}
-                        </Text>
+     <CollapseBody style={styles.itemBody}>
+            <Text>
+              {showMore ? item.Course_Resume : `${item.Course_Resume.substring(0,55)}`}
+                  <Text onPress={()=> setShowMore(!showMore)}>
+                    {showMore ? " ...ver menos" : "...ver mais"}
                   </Text>
-        </CollapseBody>
+            </Text>
+     </CollapseBody>
    </Collapse>
  ); 
 
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
     itemTitle: {
       color: "#ffff3f",
       fontSize: 20,
+      margin: 5
     },
     sideIcon: {
       color: "#ffff3f",
@@ -62,10 +68,11 @@ const styles = StyleSheet.create({
       width: 300,
       borderRadius: 3,
       margin: 4,
-      padding: 20,
+      padding: 15,
       backgroundColor: "#293351",
       justifyContent: "space-between",
       flexDirection: "row",
+      alignItems: "center",
       
       },
     itemBody: {

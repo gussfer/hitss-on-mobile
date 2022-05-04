@@ -22,7 +22,6 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </MainContextProvider>
-
   );
 
 

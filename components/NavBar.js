@@ -1,19 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 export default function NavBar({navigation}) {
     return (
         <View style={StyledNav.bar}>
             <Text style={StyledNav.logo} onPress={() => navigation.navigate('Home')}>Hitss On</Text>
-            <Text style={StyledNav.login} onPress={() => navigation.navigate('Login')}>Login</Text>
-
-            {/* <View style={StyledNav.button}>
-                <Button
-                    title={"Login"}
-                    color={"#ffff3f"}
-                    onPress={() => navigation.navigate('Login')}
-                    />
-            </View> */}
+            <Icon name="login-variant"style={StyledNav.login} onPress={() => navigation.navigate('Login')}/>
         </View>
   );
 }
@@ -37,11 +31,10 @@ const StyledNav = StyleSheet.create ({
     },
     login: {
         color: "#ffff3f",
-        
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold",
+        marginTop: 5,
         marginRight: 15,
-
       }
 })
