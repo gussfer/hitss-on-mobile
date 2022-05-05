@@ -16,9 +16,7 @@ export default function GenericList({listItems, field, navigation}){
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity
-               style={styles.itemTitle}
-               onPress={() => navigation.navigate('Login')}>
+              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.navigate('Login')}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}

@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/AntDesign"
  Se a condição for verdadeira, o operador retorna o valor da expressão 1, senão, retorna valor 2
  */
 
-export default function AdminList({listItems, field, navigation, handleDelete}){
+export default function AdminList({listItems, field, navigation, handleDelete, handleEdit}){
  //Hook para efeito "...ver mais"
  const [ showMore, setShowMore ] = React.useState(false);
 //Const associada a a FlatList
@@ -16,18 +16,22 @@ export default function AdminList({listItems, field, navigation, handleDelete}){
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity
-               style={styles.itemTitle}
-               onPress={() => navigation.navigate('Login')}>
+              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.navigate('Login')}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}
                     </Text>
                  </View>
               </TouchableOpacity>
-              <TouchableOpacity onLongPress={() => handleDelete(item.id_course)}>
-                  <Icon name="delete" style={styles.sideIcon}/>
-              </TouchableOpacity>
+              <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity onLongPress={() => handleEdit(item.id_course)}>
+                      <Icon name="edit" style={styles.sideEdit}/>
+                  </TouchableOpacity>
+                  <TouchableOpacity onLongPress={() => handleDelete(item.id_course)}>
+                      <Icon name="delete" style={styles.sideDelete}/>
+                  </TouchableOpacity>
+              </View>
+
           </View>
      </CollapseHeader>
      <CollapseBody style={styles.itemBody}>
@@ -57,13 +61,19 @@ const styles = StyleSheet.create({
       fontSize: 20,
       margin: 5
     },
-    sideIcon: {
+    sideDelete: {
       color: "#ffff3f",
       fontSize: 20,
+      marginRight: 5,
+    },
+    sideEdit: {
+      color: "#ffff3f",
+      fontSize: 20,
+      marginRight: 15,
     },
     item: {
       top: 20,
-      width: 300,
+      width: 340,
       borderRadius: 3,
       margin: 4,
       padding: 5,
@@ -74,7 +84,7 @@ const styles = StyleSheet.create({
       },
     itemBody: {
       top: 13,
-      width: 300,
+      width: 340,
       borderRadius: 3,
       margin: 4,
       padding: 10,

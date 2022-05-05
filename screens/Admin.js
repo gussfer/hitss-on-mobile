@@ -15,11 +15,11 @@ export default function Admin({navigation}) {
     }, []);
 
     const addNew = () => {
-        console.log('Add')
+      navigation.navigate('EditCourse')
     }
 
-    const handleEdit = () => {
-        console.log('Edit')
+    const handleEdit = (id_course) => {
+      navigation.navigate('EditCourse', {id_course: id_course})
     }
 
     const handleDelete = (id_course) => {
@@ -33,11 +33,20 @@ export default function Admin({navigation}) {
     return (
       <View style={styles.container}>
         <NavBar navigation={navigation}/>
-        <AdminList listItems={courses} 
-        field={"Title"} 
-        navigation={navigation} 
-        handleDelete={(id_course) => handleDelete(id_course)} 
-        handleEdit={(id) => handleEdit(id)}/>
+        <Text style={styles.text}>Cursos Disponíveis</Text>
+        <Button 
+          style={styles.item}
+          title={"+ Adicionar curso"}
+          color={"green"}
+          onPress={addNew}
+          />
+          <AdminList 
+          listItems={courses} 
+          field={"Title"} 
+          navigation={navigation} 
+          addNew={() => addNew()}
+          handleDelete={(id_course) => handleDelete(id_course)} 
+          handleEdit={(id) => handleEdit(id)}/>
       </View>
     );
   }
@@ -50,6 +59,22 @@ export default function Admin({navigation}) {
       top: 0,
       backgroundColor: "whitesmoke"
     },
+    text: {
+      marginTop: 10,
+      fontSize: 30,
+      fontWeight: "bold",
+    },
+    item: {
+      top: 20,
+      width: 340,
+      borderRadius: 3,
+      margin: 4,
+      padding: 5,
+      backgroundColor: "green",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      alignItems: "center",
+      },
     button: {
       backgroundColor: "#ffff3f",
       borderRadius: 3,

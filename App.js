@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import Home from "./screens/Home"
 import Admin from "./screens/Admin"
 import Login from "./screens/Login"
+import EditCourse from "./screens/EditCourse"
 import {MainContextProvider} from "./contexts/MainContext"
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ const App = () => {
           <Stack.Screen
             name="Admin"
             component={Admin}
+          />
+          <Stack.Screen
+            name="EditCourse"
+            component={EditCourse}
+            initialParams={{id_course: null}}
           />
         </Stack.Navigator>
       </NavigationContainer>
