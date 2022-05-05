@@ -1,4 +1,8 @@
 node_modules/
+package-lock.json
+app.json
+babel.config.js
+yarn.lock
 .expo/
 dist/
 npm-debug.*
