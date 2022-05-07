@@ -1,18 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 export default function NavBar({navigation}) {
     return (
         <View style={StyledNav.bar}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Text style={StyledNav.logo}>Hitss On</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Icon name="login-variant"style={StyledNav.login}/>
-            </TouchableOpacity>
+            <View style={{flexDirection: 'row'}}>
+                <Icon name="chevron-left"style={StyledNav.login} onPress={() => navigation.navigate('Admin')}/>
+                <Text style={StyledNav.logo} onPress={() => navigation.navigate('Home')}>Hitss On</Text>
+            </View>
+            <Icon name="login-variant"style={StyledNav.login} onPress={() => navigation.navigate('Login')}/>
         </View>
   );
 }

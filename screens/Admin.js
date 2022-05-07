@@ -3,11 +3,28 @@ import api from '../services/api'
 import AdminList from '../components/AdminList'
 import { StyleSheet, View, Text, Button } from 'react-native';
 import NavBar from '../components/NavBar';
+import AdminTab from '../components/AdminTab';
 
 
 export default function Admin({navigation}) {
     //Requisição get
     const [courses,setCourses] = React.useState([])
+    const [activeTab, setTab] = React.useState(0)
+    const TabItems = [
+      {
+        label: "Gerenciar Cursos",
+        id: 0,
+      },
+      {
+        label: "Gerenciar Alunos",
+        id: 1,
+      },
+      {
+        label: "Perfil",
+        id: 2,
+      },
+
+    ]
     React.useEffect(() => {
       api.get('/courses').then((response) => {
         setCourses(response.data)
@@ -30,23 +47,45 @@ export default function Admin({navigation}) {
         })
     }
    
+    const Panel = (props) => {
+      if (props.tab == activeTab) {
+        return (
+          <View style={styles.container}>
+            {props.children}
+          </View>
+        )
+      }
+      return null
+    }
+
     return (
       <View style={styles.container}>
         <NavBar navigation={navigation}/>
-        <Text style={styles.text}>Cursos Disponíveis</Text>
-        <Button 
-          style={styles.item}
-          title={"+ Adicionar curso"}
-          color={"green"}
-          onPress={addNew}
-          />
-          <AdminList 
-          listItems={courses} 
-          field={"Title"} 
-          navigation={navigation} 
-          addNew={() => addNew()}
-          handleDelete={(id_course) => handleDelete(id_course)} 
-          handleEdit={(id) => handleEdit(id)}/>
+        <AdminTab
+          listItems={TabItems} 
+          handleSelect={(id)=> setTab(id)}
+          activeTab={activeTab}
+        
+        />
+        <Panel tab={0}>
+          <Text style={styles.text}>Cursos Disponíveis</Text>
+          <View style={styles.button}>
+            <Button 
+              title={"+ Adicionar curso"}
+              color={"#293351"}
+              onPress={addNew}
+              />
+          </View>
+            <AdminList 
+            listItems={courses} 
+            field={"Title"} 
+            navigation={navigation} 
+            addNew={() => addNew()}
+            handleDelete={(id_course) => handleDelete(id_course)} 
+            handleEdit={(id) => handleEdit(id)}/>
+        </Panel>
+        <Panel tab={1}><Text>Painel 2</Text></Panel>
+        <Panel tab={2}><Text>Painel 3</Text></Panel>
       </View>
     );
   }
@@ -61,8 +100,9 @@ export default function Admin({navigation}) {
     },
     text: {
       marginTop: 10,
-      fontSize: 30,
+      fontSize: 20,
       fontWeight: "bold",
+      marginBottom: 15,
     },
     item: {
       top: 20,
@@ -76,8 +116,10 @@ export default function Admin({navigation}) {
       alignItems: "center",
       },
     button: {
-      backgroundColor: "#ffff3f",
-      borderRadius: 3,
+      marginLeft: 15,
+      backgroundColor: "yellow",
+      width: 300,
+      borderRadius: 5,
       marginRight: 15,
     }
   });

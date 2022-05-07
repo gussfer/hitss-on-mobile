@@ -1,8 +1,7 @@
 import { StyleSheet, View, Button, TextInput, Text, Alert } from 'react-native';
-import NavBar from './../components/NavBar';
+import NavBar from './../components/NavBarAll';
 import React from 'react';
 import api from './../services/api';
-import { MainContext } from '../contexts/MainContext';
 
 export default function EditCourse({route, navigation}) { 
   const [form, setForm] = React.useState({
