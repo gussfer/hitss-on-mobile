@@ -26,14 +26,14 @@ const StyledNav = StyleSheet.create ({
         backgroundColor: "#293351",
     },
     logo: {
-        color: "#ffff3f",
+        color: "#ffdf32",
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold",
         marginLeft: 15,
     },
     login: {
-        color: "#ffff3f",
+        color: "#ffdf32",
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold",

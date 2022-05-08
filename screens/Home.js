@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 import NavBar from '../components/NavBar';
 import React from 'react';
 import api from '../services/api'
-import GenericList from '../components/GenericList';
+import HomeList from '../components/HomeList';
 
 export default function Home({navigation}) {
   //Requisição get
@@ -18,7 +18,7 @@ export default function Home({navigation}) {
       <NavBar navigation={navigation}/>
       <Text style={styles.text}>Cursos Disponíveis</Text>
       <Button navigation={navigation} onPress={() => navigation.navigate('Admin')} title={"Admin"}/>
-      <GenericList listItems={courses} field={"Title"} navigation={navigation}/>
+      <HomeList listItems={courses} field={"Title"} navigation={navigation}/>
     </View>
   );
 }
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke"
   },
   button: {
-    backgroundColor: "#ffff3f",
+    backgroundColor: "#ffdf32",
     borderRadius: 3,
     marginRight: 15,
   },

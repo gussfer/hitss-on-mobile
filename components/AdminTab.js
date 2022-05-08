@@ -34,7 +34,7 @@ const styles = StyleSheet.create ({
         marginRight: 5
     },
     selected: {
-        color: "yellow",
+        color: "#ffdf32",
     },
 });
 const selectedTab = StyleSheet.compose(styles.selected, styles.tab)

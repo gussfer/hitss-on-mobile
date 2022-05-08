@@ -117,7 +117,7 @@ export default function Admin({navigation}) {
       },
     button: {
       marginLeft: 15,
-      backgroundColor: "yellow",
+      backgroundColor: "#ffdf32",
       width: 300,
       borderRadius: 5,
       marginRight: 15,

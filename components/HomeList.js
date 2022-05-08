@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/SimpleLineIcons"
  Se a condição for verdadeira, o operador retorna o valor da expressão 1, senão, retorna valor 2
  */
 
-export default function GenericList({listItems, field, navigation}){
+export default function HomeList({listItems, field, navigation}){
  //Hook para efeito "...ver mais"
  const [ showMore, setShowMore ] = React.useState(false);
 //Const associada a a FlatList
@@ -16,7 +16,7 @@ export default function GenericList({listItems, field, navigation}){
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.navigate('Login')}>
+              <TouchableOpacity style={styles.itemTitle} onLongPress={() => navigation.navigate('Lessons', {id_course: item.id_course})}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}
@@ -41,7 +41,7 @@ export default function GenericList({listItems, field, navigation}){
     <FlatList
     data={listItems}
     renderItem={renderItem}
-    keyExtractor={item => item.id}
+    keyExtractor={item => item.id_course}
     />
  );
 
@@ -49,12 +49,12 @@ export default function GenericList({listItems, field, navigation}){
 
 const styles = StyleSheet.create({
     itemTitle: {
-      color: "#ffff3f",
+      color: "#ffdf32",
       fontSize: 20,
       margin: 5
     },
     sideIcon: {
-      color: "#ffff3f",
+      color: "#ffdf32",
       fontSize: 20,
     },
     item: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
       borderRadius: 3,
       margin: 4,
       padding: 10,
-      backgroundColor: "#ffff3f",
+      backgroundColor: "#ffdf32",
     },
     borderStyle: {
       borderWidth: 2,
