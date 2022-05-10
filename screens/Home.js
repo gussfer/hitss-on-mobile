@@ -25,9 +25,9 @@ export default function Home({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     display: 'flex',
     alignItems: 'center',
-    flex: 1,
     top: 0,
     backgroundColor: "whitesmoke"
   },
