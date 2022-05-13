@@ -8,6 +8,8 @@ import Lessons from "./screens/Lessons"
 import EditCourse from "./screens/EditCourse"
 import NewLessons from "./screens/NewLessons"
 import {MainContextProvider} from "./contexts/MainContext"
+import LessonPage from "./screens/LessonPage"
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -30,7 +32,10 @@ const App = () => {
            <Stack.Screen
             name="Lessons"
             component={Lessons}
-            initialParams={{id_course: null}}
+          />
+          <Stack.Screen
+            name="LessonPage"
+            component={LessonPage}
           />
           <Stack.Screen
             name="EditCourse"

@@ -18,12 +18,12 @@ export default function Lessons({navigation, route}) {
     })
   })
   }, []);
- 
+  // onPress={() => navigation.navigate('LessonPage', {id_course: id_course})}
   return (
     <View style={styles.container}>
       <NavBar navigation={navigation}/>
       <Text style={styles.text}>{course.Title}</Text>
-      <View style={{width: '90%', marginLeft: '15px'}}>
+      <View style={{width: '90%', marginLeft: 15}}>
         <Text style={styles.description}>
                 {showMore ? course.Course_Resume : `Descrição`}
                     <Text onPress={()=> setShowMore(!showMore)}>

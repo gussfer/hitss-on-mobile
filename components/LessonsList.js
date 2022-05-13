@@ -16,7 +16,7 @@ export default function LessonsList({listItems, field, navigation}){
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity style={styles.itemTitle}>
+              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}
