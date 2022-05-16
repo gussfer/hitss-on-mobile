@@ -3,14 +3,39 @@ import NavBar from '../components/NavBar';
 import React from 'react';
 import api from '../services/api'
 import LessonsList from '../components/LessonsList';
+import {MainContext} from "../contexts/MainContext"
+
 
 export default function Lessons({navigation, route}) {
-  
- const [ showMore, setShowMore ] = React.useState(false);
-  const [lessons,setLessons] = React.useState([])
-  const [course,setCourse] = React.useState([])
-  const {id_course} = route.params;
+
+const [lessons,setLessons] = React.useState([])
+const [course,setCourse] = React.useState({})
+const [lastSeen,setLast] = React.useState(0)
+const {id_course} = route.params;
+const {userInfo, setUserInfo} = React.useContext(MainContext)
+
+const [ showMore, setShowMore ] = React.useState(false);
+
+const checkProgress = async (course_id, user_id) => {
+  try {
+    return await api.get(`courses/progress/${course_id}/${user_id}`)
+  } catch (error) {
+    console.log('Erro no progresso', error)
+    return error
+  }
+}
+
+const getInfo = async (id, user_id) => {
+  const course = await api.get(`course/${id}`)
+  const lessons = await api.get(`courses/list/${id}`)
+  const progress = await checkProgress(id,  user_id)
+  setCourse(course.data[0])
+  setLessons(lessons.data)
+  setLast(progress.data.lastSeen)
+}
+
   React.useEffect(() => {
+    // getInfo(id_course, userInfo.user.id)
     api.get(`course/${id_course}`).then((response) => {
       setCourse(response.data[0])
     api.get(`courses/list/${id_course}`).then((response) => {
@@ -18,23 +43,30 @@ export default function Lessons({navigation, route}) {
     })
   })
   }, []);
-  // onPress={() => navigation.navigate('LessonPage', {id_course: id_course})}
   return (
     <View style={styles.container}>
-      <NavBar navigation={navigation}/>
+    <NavBar navigation={navigation}/>
       <Text style={styles.text}>{course.Title}</Text>
-      <View style={{width: '90%', marginLeft: 15}}>
-        <Text style={styles.description}>
-                {showMore ? course.Course_Resume : `Descrição`}
-                    <Text onPress={()=> setShowMore(!showMore)}>
-                      {showMore ? " ...ver menos" : "...ver mais"}
-                    </Text>
+        <View style={{width: '90%', marginLeft: 15}}>
+          <Text style={styles.description}>
+            {showMore ? course.Course_Resume : `Descrição`}
+              <Text onPress={()=> setShowMore(!showMore)}>
+                {showMore ? " ...ver menos" : "...ver mais"}
               </Text>
+          </Text>
         </View>
       <View style={styles.button}>
-        <Button color={"#293351"} onPress={() => navigation.navigate('NewLessons', {id_course: id_course})} title={"+ Adicionar aula"}/>
+        <Button 
+          color={"#293351"} 
+          onPress={() => navigation.navigate('NewLessons', {id_course: id_course})} 
+          title={"+ Adicionar aula"}
+        />
       </View>
-      <LessonsList listItems={lessons} field={"title"} navigation={navigation}/>
+        <LessonsList 
+          listItems={lessons} 
+          field={"title"} 
+          navigation={navigation}
+          lastSeen={lastSeen}/>
     </View>
   );
 }

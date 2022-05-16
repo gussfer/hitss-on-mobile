@@ -8,15 +8,23 @@ import Icon from "react-native-vector-icons/SimpleLineIcons"
  Se a condição for verdadeira, o operador retorna o valor da expressão 1, senão, retorna valor 2
  */
 
-export default function LessonsList({listItems, field, navigation}){
- //Hook para efeito "...ver mais"
- const [ showMore, setShowMore ] = React.useState(false);
+export default function LessonsList({listItems, field, navigation, lastSeen}){
+//Hook para efeito "...ver mais"
+const [ showMore, setShowMore ] = React.useState(false);
+
+
 //Const associada a a FlatList
  const renderItem = ({item}) => (
    <Collapse>
      <CollapseHeader>
-          <View style={styles.item}>
-              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})}>
+          <View style={lastSeen + 1 < item.number ? styles.itemBlock : styles.item}>
+              <TouchableOpacity style={styles.itemTitle} 
+                onPress={() => 
+                lastSeen + 1 < item.number ? console.log("Não permitido") 
+                :     
+                navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})}
+                
+                >
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}
@@ -67,8 +75,18 @@ const styles = StyleSheet.create({
       justifyContent: "space-between",
       flexDirection: "row",
       alignItems: "center",
-      
       },
+      itemBlock: {
+        top: 20,
+        width: 300,
+        borderRadius: 3,
+        margin: 4,
+        padding: 15,
+        backgroundColor: "#6666",
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: "center",
+        },
     itemBody: {
       top: 13,
       width: 300,

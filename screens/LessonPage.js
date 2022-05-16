@@ -6,7 +6,7 @@ import {Video, AVPLaybackStatus} from "expo-av"
 
 
 export default function LessonPage({navigation, route}) {
-  
+ 
   const [ showMore, setShowMore ] = React.useState(false);
   const [lesson,setLesson] = React.useState([])
   const [videoP,setVideo] = React.useState([])
