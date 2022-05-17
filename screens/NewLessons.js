@@ -26,7 +26,8 @@ const {id_course} = route.params;
       );
     }
     api.post(`course/video`, {... form, id_course: id_course}).then((response) => {
-        setStep(1)
+        // setStep(1)
+        navigation.push('Lessons', {id_course: id_course})
       })
   }
 

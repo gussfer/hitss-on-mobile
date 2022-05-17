@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-
+import {MainContext} from "../contexts/MainContext"
 
 export default function NavBar({navigation}) {
+const {userInfo, setUserInfo} = React.useContext(MainContext)
+
     return (
         <View style={StyledNav.bar}>
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -11,7 +13,11 @@ export default function NavBar({navigation}) {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Icon name="login-variant"style={StyledNav.login}/>
+                {
+                    !userInfo.user ? <Icon name="login-variant"style={StyledNav.login}/> 
+                    : 
+                    <Text style={StyledNav.name}>{userInfo.user.first_name}</Text>
+                }
             </TouchableOpacity>
         </View>
   );
@@ -33,6 +39,14 @@ const StyledNav = StyleSheet.create ({
         fontSize: 30,
         fontWeight: "bold",
         marginLeft: 15,
+    },
+    name: {
+        color: "#ffdf32",
+        textAlign: "center",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginRight: 15,
+        marginTop: 7,
     },
     login: {
         color: "#ffdf32",

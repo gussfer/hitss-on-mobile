@@ -3,8 +3,10 @@ import NavBar from '../components/NavBar';
 import React from 'react';
 import api from '../services/api'
 import HomeList from '../components/HomeList';
+import {MainContext} from "../contexts/MainContext" 
 
 export default function Home({navigation}) {
+  const {userInfo, setUserInfo} = React.useContext(MainContext) 
   //Requisição get
   const [courses,setCourses] = React.useState([])
   React.useEffect(() => {
@@ -17,7 +19,15 @@ export default function Home({navigation}) {
     <View style={styles.container}>
       <NavBar navigation={navigation}/>
       <Text style={styles.text}>Cursos Disponíveis</Text>
-      <Button navigation={navigation} onPress={() => navigation.navigate('Admin')} title={"Admin"}/>
+      {
+        userInfo.user && 
+        <Button 
+          title={"Admin"}
+          color={"#ffdf32"}
+          navigation={navigation} 
+          onPress={() => navigation.navigate('Admin')} 
+        />
+      }
       <HomeList listItems={courses} field={"Title"} navigation={navigation}/>
     </View>
   );

@@ -10,7 +10,6 @@ export default function NavBar({navigation}) {
                 <Icon name="chevron-left"style={StyledNav.login} onPress={() => navigation.navigate('Admin')}/>
                 <Text style={StyledNav.logo} onPress={() => navigation.navigate('Home')}>Hitss On</Text>
             </View>
-            <Icon name="login-variant"style={StyledNav.login} onPress={() => navigation.navigate('Login')}/>
         </View>
   );
 }
@@ -18,7 +17,7 @@ export default function NavBar({navigation}) {
 const StyledNav = StyleSheet.create ({
     bar: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         width: "100%",
         marginTop: 20,
         paddingVertical: 8,

@@ -12,6 +12,20 @@ export default function LessonsList({listItems, field, navigation, lastSeen}){
 //Hook para efeito "...ver mais"
 const [ showMore, setShowMore ] = React.useState(false);
 
+const handlePress = () => {
+  if (lastSeen + 1 < item.number) {
+    return Alert.alert(
+      "Aula não liberada",
+      "Assista as aulas anteriores para liberar",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+ } else {
+  navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})
+ }
+}
+
 
 //Const associada a a FlatList
  const renderItem = ({item}) => (

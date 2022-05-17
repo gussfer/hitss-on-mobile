@@ -34,15 +34,10 @@ const getInfo = async (id, user_id) => {
   setLast(progress.data.lastSeen)
 }
 
-  React.useEffect(() => {
-    // getInfo(id_course, userInfo.user.id)
-    api.get(`course/${id_course}`).then((response) => {
-      setCourse(response.data[0])
-    api.get(`courses/list/${id_course}`).then((response) => {
-      setLessons(response.data)
-    })
-  })
-  }, []);
+React.useEffect(() => {
+  getInfo(id_course, userInfo.user.id_users)
+}, [id_course, userInfo.user.id_users]);
+  
   return (
     <View style={styles.container}>
     <NavBar navigation={navigation}/>

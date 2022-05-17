@@ -3,14 +3,15 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
-export default function NavBarLesson({navigation}) {
+export default function NavBarLesson({navigation, id_course}) {
+
     return (
         <View style={StyledNav.bar}>
             <View style={{flexDirection: 'row'}}>
-                <Icon name="chevron-left"style={StyledNav.login} onPress={() => navigation.navigate('Lessons')}/>
+                <Icon name="chevron-left"style={StyledNav.login} 
+                    onPress={() => navigation.navigate('Lessons', {id_course: id_course})}/>
                 <Text style={StyledNav.logo} onPress={() => navigation.navigate('Home')}>Hitss On</Text>
             </View>
-                <Icon name="login-variant"style={StyledNav.login} onPress={() => navigation.navigate('Login')}/>
         </View>
   );
 }

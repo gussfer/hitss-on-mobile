@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text, Button } from 'react-native';
-import NavBar from '../components/NavBar';
+import NavBarLesson from '../components/NavBarLesson';
 import React from 'react';
 import api from '../services/api'
 import {Video, AVPLaybackStatus} from "expo-av"
+import {MainContext} from "../contexts/MainContext"
 
 
 export default function LessonPage({navigation, route}) {
@@ -14,6 +15,16 @@ export default function LessonPage({navigation, route}) {
   const [status, setStatus] = React.useState({});
   const {id_course, lessonNumber} = route.params;
   const video = React.useRef(null);
+  const {userInfo, setUserInfo} = React.useContext(MainContext)
+
+  const updateProgress = async (course_id, user_id, lastSeen) => {
+    try {
+      return await api.post(`courses/progress/${course_id}/${user_id}`, {lastSeen: lastSeen})
+    } catch (error) {
+      console.log('Erro no progresso', error)
+      return error
+    }
+  }
 
   React.useEffect(() => {
     api.get(`course/${id_course}`).then((resp) => {
@@ -23,11 +34,12 @@ export default function LessonPage({navigation, route}) {
       setLesson(response.data)
     })
   })
+  updateProgress(id_course, userInfo.user.id_users, lessonNumber)
   }, []);
  
   return (
     <View style={styles.container}>
-      <NavBar navigation={navigation}/>
+      <NavBarLesson navigation={navigation}/>
       <Text style={styles.text}>{course.Title}</Text>
       <View style={styles.container2}>
               <Video
