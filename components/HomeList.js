@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, FlatList, View, Text, TouchableOpacity, Alert} from 'react-native';
 import React from 'react';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import Icon from "react-native-vector-icons/SimpleLineIcons"
@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/SimpleLineIcons"
  Se a condição for verdadeira, o operador retorna o valor da expressão 1, senão, retorna valor 2
  */
 
-export default function HomeList({listItems, field, navigation}){
+export default function HomeList({listItems, field, navigation, userInfo}){
  //Hook para efeito "...ver mais"
  const [ showMore, setShowMore ] = React.useState(false);
 //Const associada a a FlatList
@@ -16,7 +16,17 @@ export default function HomeList({listItems, field, navigation}){
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity style={styles.itemTitle} onLongPress={() => navigation.navigate('Lessons', {id_course: item.id_course})}>
+              <TouchableOpacity style={styles.itemTitle} 
+                onPress={() => 
+                  userInfo.user ? navigation.navigate('Lessons', {id_course: item.id_course})
+                  :
+                  Alert.alert(
+                    "Não logado!",
+                    "Para acessar este ambiente, faça o login",
+                    [
+                      { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ]
+                  )}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}

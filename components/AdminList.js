@@ -47,9 +47,9 @@ export default function AdminList({listItems, field, navigation, handleDelete, h
 
  return (
     <FlatList
-    data={listItems}
-    renderItem={renderItem}
-    keyExtractor={item => item.id}
+      data={listItems}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
     />
  );
 

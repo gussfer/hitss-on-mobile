@@ -28,7 +28,12 @@ export default function Home({navigation}) {
           onPress={() => navigation.navigate('Admin')} 
         />
       }
-      <HomeList listItems={courses} field={"Title"} navigation={navigation}/>
+      <HomeList 
+        listItems={courses} 
+        field={"Title"} 
+        navigation={navigation}
+        userInfo={userInfo}
+      />
     </View>
   );
 }

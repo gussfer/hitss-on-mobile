@@ -77,12 +77,13 @@ export default function Admin({navigation}) {
               />
           </View>
             <AdminList 
-            listItems={courses} 
-            field={"Title"} 
-            navigation={navigation} 
-            addNew={() => addNew()}
-            handleDelete={(id_course) => handleDelete(id_course)} 
-            handleEdit={(id) => handleEdit(id)}/>
+              listItems={courses} 
+              field={"Title"} 
+              navigation={navigation} 
+              addNew={() => addNew()}
+              handleDelete={(id_course) => handleDelete(id_course)} 
+              handleEdit={(id) => handleEdit(id)}
+            />
         </Panel>
         <Panel tab={1}><Text>Painel 2</Text></Panel>
         <Panel tab={2}><Text>Painel 3</Text></Panel>

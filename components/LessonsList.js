@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, FlatList, View, Text, TouchableOpacity, Alert} from 'react-native';
 import React from 'react';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import Icon from "react-native-vector-icons/SimpleLineIcons"
@@ -12,21 +12,6 @@ export default function LessonsList({listItems, field, navigation, lastSeen}){
 //Hook para efeito "...ver mais"
 const [ showMore, setShowMore ] = React.useState(false);
 
-const handlePress = () => {
-  if (lastSeen + 1 < item.number) {
-    return Alert.alert(
-      "Aula não liberada",
-      "Assista as aulas anteriores para liberar",
-      [
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
-    );
- } else {
-  navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})
- }
-}
-
-
 //Const associada a a FlatList
  const renderItem = ({item}) => (
    <Collapse>
@@ -34,10 +19,16 @@ const handlePress = () => {
           <View style={lastSeen + 1 < item.number ? styles.itemBlock : styles.item}>
               <TouchableOpacity style={styles.itemTitle} 
                 onPress={() => 
-                lastSeen + 1 < item.number ? console.log("Não permitido") 
-                :     
-                navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})}
-                
+                  lastSeen + 1 < item.number ? 
+                  Alert.alert(
+                    "Aula não liberada",
+                    "Assista as aulas anteriores para liberar",
+                    [
+                      { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ]
+                  ) 
+                  :     
+                  navigation.push('LessonPage', {id_course: item.id_course, lessonNumber: item.number})}
                 >
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
