@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.gussfer.Hitssonmobile"
+      "package": "com.gussfer.Hitssonmobile", 
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
