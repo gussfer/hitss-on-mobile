@@ -14,19 +14,21 @@ export default function Home({navigation}) {
       setCourses(response.data)
     })
   }, []);
- 
+
   return (
     <View style={styles.container}>
       <NavBar navigation={navigation}/>
       <Text style={styles.text}>Cursos Disponíveis</Text>
       {
         userInfo.user && 
-        <Button 
-          title={"Admin"}
-          color={"#ffdf32"}
-          navigation={navigation} 
-          onPress={() => navigation.navigate('Admin')} 
-        />
+        <View style={styles.button}>
+          <Button 
+            title={"Admin"}
+            color={"#293351"}
+            navigation={navigation} 
+            onPress={() => navigation.navigate('Admin')} 
+          />
+        </View>
       }
       <HomeList 
         listItems={courses} 
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke"
   },
   button: {
+    marginTop: 20,
     backgroundColor: "#ffdf32",
     borderRadius: 3,
     marginRight: 15,

@@ -16,7 +16,7 @@ export default function AdminList({listItems, field, navigation, handleDelete, h
    <Collapse>
      <CollapseHeader>
           <View style={styles.item}>
-              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.navigate('Login')}>
+              <TouchableOpacity style={styles.itemTitle} onPress={() => navigation.navigate('Lessons', {id_course: item.id_course})}>
                  <View style={styles.borderStyle}>
                     <Text style={styles.itemTitle}>
                       {item[field]}
